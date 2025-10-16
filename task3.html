@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Shadow</title>
+</head>
+<body>
+  <h2>Info</h2>
+  <p>This is the first paragraph.</p>
+  <p>This is the second paragraph.</p>
+  <p>This is the third paragraph.</p>
+
+  <button onclick="addShadow()">Add Text Shadow</button>
+
+ <script>
+    function addShadow() {
+      // Get all paragraph
+      let paragraphs = document.getElementsByTagName("p");
+
+      // Add shadow
+      for (let i = 0; i < paragraphs.length; i++) {
+        paragraphs[i].style.textShadow = "2px 2px 5px gray";
+      }
+    }
+  </script>
+</body>
+</html>
