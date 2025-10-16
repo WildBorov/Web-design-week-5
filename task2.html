@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bradford College Equipment Inventory</title>
+</head>
+<body>
+
+<h2>Bradford College Equipment Inventory</h2>
+
+<table id="t">
+  <tr>
+    <th>Item Name</th>
+    <th>Quantity</th>
+    <th>Location</th>
+    <th>Condition</th>
+  </tr>
+</table>
+
+<p>
+  Item: <input id="item">
+  Qty: <input id="qty" type="number">
+  Location: <input id="loc">
+  Condition: 
+  <select id="cond">
+    <option>New</option>
+    <option>Used</option>
+    <option>Needs Repair</option>
+  </select>
+  <button onclick="addRow()">Add</button>
+</p>
+
+<p>
+  Delete column (0 - name, 1 - Qty, 2 - loc, 3 - cond): <input id="col" type="number">
+  <button onclick="delCol()">Delete</button>
+</p>
+
+<script>
+function addRow() {
+  let t = document.getElementById("t");
+  let r = t.insertRow();
+  r.insertCell(0).innerHTML = item.value;
+  r.insertCell(1).innerHTML = qty.value;
+  r.insertCell(2).innerHTML = loc.value;
+  r.insertCell(3).innerHTML = cond.value;
+}
+function delCol() {
+  let c = parseInt(col.value);
+  let t = document.getElementById("t");
+  for (let i = 0; i < t.rows.length; i++)
+    t.rows[i].deleteCell(c);
+}
+</script>
+
+</body>
+</html>
