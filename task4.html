@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple List Manipulator</title>
+</head>
+<body>
+  <h2>Simple List Manipulator</h2>
+
+  <button onclick="createList()">Create New List</button>
+  <div id="lists"></div>
+
+  <script>
+    let count = 0; // unique ID
+
+    function createList() {
+      count++;
+      let listId = "list" + count;
+
+      // create a new list with 3 items
+      let div = document.createElement("div");
+      div.innerHTML = `
+        <h3>List ${count} (ID: ${listId})</h3>
+        <ul id="${listId}">
+
+        </ul>
+
+        <input id="new-${listId}" placeholder="New item">
+        <input id="target-${listId}" placeholder="Targed">
+        <br><br>
+
+        <button onclick="insertBeforeItem('${listId}')">Insert Before</button>
+        <button onclick="appendItem('${listId}')">Append</button>
+        <button onclick="replaceItem('${listId}')">Replace</button>
+        <button onclick="removeItem('${listId}')">Remove</button>
+        <hr>
+      `;
+      document.getElementById("lists").appendChild(div);
+    }
+
+    // Insert before a target
+    function insertBeforeItem(listId) {
+      let list = document.getElementById(listId);
+      let newText = document.getElementById("new-" + listId).value;
+      let targetText = document.getElementById("target-" + listId).value;
+
+      let items = list.getElementsByTagName("li");
+      for (let item of items) {
+        if (item.textContent === targetText) {
+          let li = document.createElement("li");
+          li.textContent = newText;
+          list.insertBefore(li, item);
+          return;
+        }
+      }
+      alert("Target not found");
+    }
+
+    // Add at the end
+    function appendItem(listId) {
+      let list = document.getElementById(listId);
+      let newText = document.getElementById("new-" + listId).value;
+      let li = document.createElement("li");
+      li.textContent = newText;
+      list.appendChild(li);
+    }
+
+    // Replace item
+    function replaceItem(listId) {
+      let list = document.getElementById(listId);
+      let newText = document.getElementById("new-" + listId).value;
+      let targetText = document.getElementById("target-" + listId).value;
+
+      let items = list.getElementsByTagName("li");
+      for (let item of items) {
+        if (item.textContent === targetText) {
+          item.textContent = newText;
+          return;
+        }
+      }
+      alert("Item not found!");
+    }
+
+    // Remove item
+    function removeItem(listId) {
+      let list = document.getElementById(listId);
+      let targetText = document.getElementById("target-" + listId).value;
+
+      let items = list.getElementsByTagName("li");
+      for (let item of items) {
+        if (item.textContent === targetText) {
+          list.removeChild(item);
+          return;
+        }
+      }
+      alert("Item not found");
+    }
+  </script>
+</body>
+</html>
